@@ -1,0 +1,25 @@
+{
+  "packageManager": "pnpm@11.0.8",
+  "scripts": {
+    "d": "pnpm refresh && vite",
+    "b": "pnpm refresh && vite build",
+    "p": "pnpx http-server dist",
+    "refresh": "node scripts/refresh.js"
+  },
+  "dependencies": {
+    "image-size": "^2.0.2",
+    "preact": "^10.29.1",
+    "preact-iso": "^2.12.0",
+    "preact-render-to-string": "^6.6.7",
+    "react-dom": "^19.2.6",
+    "react-responsive-carousel": "^3.2.23",
+    "resize-observer-polyfill": "^1.5.1",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.5",
+    "@types/node": "^25.6.2",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.11"
+  }
+}
