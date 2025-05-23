@@ -4,6 +4,6 @@
 # Dist
 node_modules
 dist/
-public/photos/*.*
-!public/photos/.gitkeep
+public/photos/
 src/photos.json
+blurhash_cache.json

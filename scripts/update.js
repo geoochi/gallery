@@ -160,6 +160,9 @@ const minify = async (needCompressPhotos, destination) => {
 }
 
 const minifyPhotos = async () => {
+  if (!fs.existsSync(photosDir)) {
+    fs.mkdirSync(photosDir)
+  }
   const publicPhotos = fs.readdirSync(photosDir)
   const photos = fs.readdirSync(photosLocalDir).filter(photo => ignoreFileList.every(f => !photo.includes(f)))
 
