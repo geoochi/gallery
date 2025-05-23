@@ -27,12 +27,23 @@ const saveCache = () => {
 const encodeImageToBlurhash = path =>
   new Promise((resolve, reject) => {
     sharp(path)
-      .raw()
-      .ensureAlpha()
-      .toBuffer((err, buffer, { width, height }) => {
-        if (err) return reject(err)
-        resolve(encode(new Uint8ClampedArray(buffer), width, height, 4, 4))
+      .metadata()
+      .then(metadata => {
+        const { width, height } = metadata
+        return sharp(path)
+          .resize({
+            width: Math.round(width / 4),
+            height: Math.round(height / 4),
+            fit: 'inside',
+          })
+          .raw()
+          .ensureAlpha()
+          .toBuffer({ resolveWithObject: true })
       })
+      .then(({ data, info }) => {
+        resolve(encode(new Uint8ClampedArray(data), info.width, info.height, 4, 4))
+      })
+      .catch(reject)
   })
 
 if (!isMainThread) {
