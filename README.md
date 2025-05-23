@@ -23,8 +23,8 @@ Let's start now!
 ## Installation
 
 ```sh
-git clone https://github.com/geoochi/AnimatedGallery.git
-cd AnimatedGallery
+git clone https://github.com/geoochi/gallery.git
+cd gallery
 npm install
 npm run dev
 ```
