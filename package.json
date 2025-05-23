@@ -7,10 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "pnpx http-server dist -p 5173 -a localhost",
-    "photos": "node scripts/update.js",
-    "photos:preview": "NODE_ENV=DEV node scripts/update.js",
     "predev": "pnpm photos:preview",
-    "prebuild": "pnpm photos"
+    "prebuild": "pnpm photos",
+    "photos:preview": "NODE_ENV=DEV node scripts/update.js",
+    "photos": "node scripts/update.js"
   },
   "dependencies": {
     "prop-types": "^15.8.1",
