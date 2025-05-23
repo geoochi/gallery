@@ -11,15 +11,12 @@ const throttle = (fn, wait) => {
     }
 
     clearTimeout(lastFn)
-    lastFn = setTimeout(
-      function () {
-        if (Date.now() - lastTime >= wait) {
-          fn.apply(context, args)
-          lastTime = Date.now()
-        }
-      },
-      Math.max(wait - (Date.now() - lastTime), 0)
-    )
+    lastFn = setTimeout(function () {
+      if (Date.now() - lastTime >= wait) {
+        fn.apply(context, args)
+        lastTime = Date.now()
+      }
+    }, Math.max(wait - (Date.now() - lastTime), 0))
   }
 }
 
