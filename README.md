@@ -25,8 +25,8 @@ Let's start now!
 ## Installation
 
 ```sh
-git clone https://github.com/SimonAKing/Gallery.git
-cd Gallery
+git clone https://github.com/geoochi/AnimatedGallery.git
+cd AnimatedGallery
 npm install
 npm run dev
 ```

@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import Carousel, { Modal, ModalGateway } from 'react-images';
+import Carousel, { Modal, ModalGateway } from 'react-images'
 
 function Lightbox({ viewerIsOpen, photos, currentPhoto, closeLightbox }) {
   return (
@@ -21,7 +21,7 @@ function Lightbox({ viewerIsOpen, photos, currentPhoto, closeLightbox }) {
         </Modal>
       ) : null}
     </ModalGateway>
-  );
+  )
 }
 
 Lightbox.propTypes = {
@@ -29,6 +29,6 @@ Lightbox.propTypes = {
   photos: PropTypes.array,
   currentPhoto: PropTypes.number,
   closeLightbox: PropTypes.func,
-};
+}
 
-export default React.memo(Lightbox);
+export default React.memo(Lightbox)

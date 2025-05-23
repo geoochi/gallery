@@ -5,7 +5,12 @@ body {
 }
 
 html {
-  font-family: "Comic Sans MS", "Helvetica Neue", "Microsoft Yahei", -apple-system, sans-serif !important;
+  font-family:
+    'Comic Sans MS',
+    'Helvetica Neue',
+    'Microsoft Yahei',
+    -apple-system,
+    sans-serif !important;
   font-size: 16px;
 
   overflow-x: hidden;
@@ -35,7 +40,9 @@ html {
   height: 100%;
 
   cursor: pointer;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 
   border-radius: 4px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
@@ -64,7 +71,7 @@ html {
   transition-timing-function: ease;
   transition-duration: 0.4s;
   transition-property: opacity, transform, filter;
-  transform: scale(1.2) translateZ( 20px);
+  transform: scale(1.2) translateZ(20px);
 
   opacity: 0;
 
@@ -126,7 +133,7 @@ html {
 
   opacity: 0;
   color: white;
-  background: linear-gradient(to bottom, transparent 0%, rgba( 0, 0, 0, 0.7) 81%);
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 81%);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 
   backdrop-filter: blur(4px);
