@@ -1,7 +1,5 @@
 # SimonAKing-Gallery
 
-[中文版说明](README.zh_CN.md)
-
 ## Introduction
 
 > A beautiful and modern photo gallery project.
