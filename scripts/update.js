@@ -57,7 +57,7 @@ const packageJson = require('../package.json')
 const CDN = packageJson.config.cdn
 const photosDir = './public/photos/'
 const photosLocalDir = './photos/'
-const photoJS = './src/photos.json'
+const photoJSON = './src/photos.json'
 
 const ignoreFileList = ['.DS_Store', 'hidden']
 
@@ -238,7 +238,8 @@ const main = async () => {
       }
     }
 
-    fs.writeFileSync(photoJS, JSON.stringify(results))
+    fs.writeFileSync(photoJSON, JSON.stringify(results))
+    fs.writeFileSync(photosDir + '.gitkeep', '')
 
     const newCount = totalPhotos - cachedCount
     console.log(`Processing complete: ${totalPhotos} total, ${cachedCount} from cache, ${newCount} newly processed`)

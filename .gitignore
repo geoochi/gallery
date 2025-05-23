@@ -4,5 +4,6 @@
 # Dist
 node_modules
 dist/
-public/photos/
+public/photos/*.*
+!public/photos/.gitkeep
 src/photos.json
