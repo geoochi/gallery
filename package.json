@@ -1,6 +1,6 @@
 {
   "config": {
-    "cdn": "https://cdn.jsdelivr.net/gh/geoochi/AnimatedGallery/photos/"
+    "cdn": "https://cdn.jsdelivr.net/gh/geoochi/gallery/photos/"
   },
   "scripts": {
     "dev": "rsbuild dev --open",
