@@ -34,6 +34,7 @@ npm run dev
 ### Local Photo Updates
 
 1. **Add Your Photos**
+
    - Place your photos in the `photos` directory at the project root
    - Images will be automatically compressed during build
    - Original folder structure will be maintained
@@ -47,11 +48,14 @@ npm run dev
 ### Update Hosted Photos
 
 1. **Build the Project**
+
    - Run `npm run build` in the root directory
    - This will generate optimized photos in the `dist` directory
 
 2. **Deploy to GitHub Pages**
+
    - Option 1: Deploy to username.github.io
+
      ```sh
      cd dist
      git init
@@ -60,6 +64,7 @@ npm run dev
      git remote add origin https://github.com/[username]/[username].github.io.git
      git push -f origin main
      ```
+
      - Visit `username.github.io` to view your gallery
 
    - Option 2: Deploy as a subdirectory
@@ -75,6 +80,7 @@ npm run dev
      ```
 
 ## Sponsor
+
 I spent a lot of time and energy to develop this project.
 
 If this project has brought you help, welcome to sponsor, `star`.

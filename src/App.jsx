@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react'
-import './App.css'
 import Gallery from './components/Gallery/index'
 import Lightbox from './components/Lightbox'
 import photos from './photos.json'
+import './App.css'
 
 import { lazyLoad } from './utils'
 
