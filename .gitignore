@@ -6,4 +6,3 @@ node_modules
 dist/
 public/photos/
 src/photos.json
-blurhash_cache.json
