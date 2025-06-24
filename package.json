@@ -4,13 +4,9 @@
     "cdn": "./photos/"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "pnpx http-server dist -p 5173 -a localhost",
-    "predev": "pnpm photos:preview",
-    "prebuild": "pnpm photos",
-    "photos:preview": "NODE_ENV=DEV node scripts/update.js",
-    "photos": "node scripts/update.js"
+    "d": "NODE_ENV=DEV node scripts/update.js && vite",
+    "b": "node scripts/update.js && vite build",
+    "p": "pnpx http-server dist -p 5173 -a localhost"
   },
   "dependencies": {
     "prop-types": "^15.8.1",
