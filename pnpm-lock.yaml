@@ -12,30 +12,30 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
       react:
-        specifier: ^17.0.2
-        version: 17.0.2
+        specifier: ^19.1.0
+        version: 19.1.0
       react-blurhash:
         specifier: ^0.3.0
-        version: 0.3.0(blurhash@2.0.5)(react@17.0.2)
+        version: 0.3.0(blurhash@2.0.5)(react@19.1.0)
       react-dom:
-        specifier: ^17.0.2
-        version: 17.0.2(react@17.0.2)
+        specifier: ^19.1.0
+        version: 19.1.0(react@19.1.0)
       react-images:
         specifier: latest
-        version: 1.2.0-beta.7(prop-types@15.8.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+        version: 1.2.0-beta.7(@types/react@19.1.8)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       resize-observer-polyfill:
         specifier: ^1.5.1
         version: 1.5.1
     devDependencies:
-      '@types/image-size':
-        specifier: ^0.8.0
-        version: 0.8.0
       '@types/node':
         specifier: ^24.0.3
         version: 24.0.3
-      '@types/sharp':
-        specifier: ^0.32.0
-        version: 0.32.0
+      '@types/react':
+        specifier: ^19.1.8
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: ^19.1.6
+        version: 19.1.6(@types/react@19.1.8)
       '@vitejs/plugin-react':
         specifier: ^4.6.0
         version: 4.6.0(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2))
@@ -610,16 +610,16 @@ packages:
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
 
-  '@types/image-size@0.8.0':
-    resolution: {integrity: sha512-hMlhu25ji75dXQk2uZkN3pTJ+lWrgKr8M1fTpyyFvuu+SJZBdGa5gDm4BVNobWXHZbOU11mBj0vciYp7qOfAFg==}
-    deprecated: This is a stub types definition. image-size provides its own type definitions, so you do not need this installed.
-
   '@types/node@24.0.3':
     resolution: {integrity: sha512-R4I/kzCYAdRLzfiCabn9hxWfbuHS573x+r0dJMkkzThEa7pbrcDWK+9zu3e7aBOouf+rQAciqPFMnxwr0aWgKg==}
 
-  '@types/sharp@0.32.0':
-    resolution: {integrity: sha512-OOi3kL+FZDnPhVzsfD37J88FNeZh6gQsGcLc95NbeURRGvmSjeXiDcyWzF2o3yh/gQAUn2uhh/e+CPCa5nwAxw==}
-    deprecated: This is a stub types definition. sharp provides its own type definitions, so you do not need this installed.
+  '@types/react-dom@19.1.6':
+    resolution: {integrity: sha512-4hOiT/dwO8Ko0gV1m/TJZYk3y0KBnY9vzDh7W+DH17b2HFSOGgdj33dhihPeuy3l0q23+4e+hoXHV6hCC4dCXw==}
+    peerDependencies:
+      '@types/react': ^19.0.0
+
+  '@types/react@19.1.8':
+    resolution: {integrity: sha512-AwAfQ2Wa5bCx9WP8nZL2uMZWod7J7/JSplxbTmBQ5ms6QpqNYm672H0Vu9ZVKVngQ+ii4R/byguVEUZQyeg44g==}
 
   '@vitejs/plugin-react@4.6.0':
     resolution: {integrity: sha512-5Kgff+m8e2PB+9j51eGHEpn5kUzRKH2Ry0qGoe8ItJg7pqnkPrYPkDQZGgGmTa0EGarHrkjLvOdU3b1fzI8otQ==}
@@ -774,8 +774,8 @@ packages:
   domutils@2.8.0:
     resolution: {integrity: sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==}
 
-  electron-to-chromium@1.5.172:
-    resolution: {integrity: sha512-fnKW9dGgmBfsebbYognQSv0CGGLFH1a5iV9EDYTBwmAQn+whbzHbLFlC+3XbHc8xaNtpO0etm8LOcRXs1qMRkQ==}
+  electron-to-chromium@1.5.173:
+    resolution: {integrity: sha512-2bFhXP2zqSfQHugjqJIDFVwa+qIxyNApenmXTp9EjaKtdPrES5Qcn9/aSFy/NaP2E+fWG/zxKu/LBvY36p5VNQ==}
 
   encoding@0.1.13:
     resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
@@ -1075,10 +1075,10 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
 
-  react-dom@17.0.2:
-    resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
+  react-dom@19.1.0:
+    resolution: {integrity: sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==}
     peerDependencies:
-      react: 17.0.2
+      react: ^19.1.0
 
   react-focus-lock@2.13.6:
     resolution: {integrity: sha512-ehylFFWyYtBKXjAO9+3v8d0i+cnc1trGS0vlTGhzFW1vbFXVUTmR8s2tt/ZQG8x5hElg6rhENlLG1H3EZK0Llg==}
@@ -1170,8 +1170,8 @@ packages:
       react: 0.14.x || ^15.0.0 || ^16.0.0
       react-dom: 0.14.x || ^15.0.0 || ^16.0.0
 
-  react@17.0.2:
-    resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==}
+  react@19.1.0:
+    resolution: {integrity: sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==}
     engines: {node: '>=0.10.0'}
 
   resize-observer-polyfill@1.5.0:
@@ -1200,8 +1200,8 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  scheduler@0.20.2:
-    resolution: {integrity: sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==}
+  scheduler@0.26.0:
+    resolution: {integrity: sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==}
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -1782,17 +1782,17 @@ snapshots:
 
   '@types/estree@1.0.8': {}
 
-  '@types/image-size@0.8.0':
-    dependencies:
-      image-size: 0.9.7
-
   '@types/node@24.0.3':
     dependencies:
       undici-types: 7.8.0
 
-  '@types/sharp@0.32.0':
+  '@types/react-dom@19.1.6(@types/react@19.1.8)':
     dependencies:
-      sharp: 0.34.2
+      '@types/react': 19.1.8
+
+  '@types/react@19.1.8':
+    dependencies:
+      csstype: 3.1.3
 
   '@vitejs/plugin-react@4.6.0(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2))':
     dependencies:
@@ -1849,7 +1849,7 @@ snapshots:
   browserslist@4.25.0:
     dependencies:
       caniuse-lite: 1.0.30001724
-      electron-to-chromium: 1.5.172
+      electron-to-chromium: 1.5.173
       node-releases: 2.0.19
       update-browserslist-db: 1.1.3(browserslist@4.25.0)
 
@@ -1946,7 +1946,7 @@ snapshots:
       domelementtype: 2.3.0
       domhandler: 4.3.1
 
-  electron-to-chromium@1.5.172: {}
+  electron-to-chromium@1.5.173: {}
 
   encoding@0.1.13:
     dependencies:
@@ -2069,11 +2069,11 @@ snapshots:
       domhandler: 4.3.1
       htmlparser2: 7.2.0
 
-  html-react-parser@1.4.14(react@17.0.2):
+  html-react-parser@1.4.14(react@19.1.0):
     dependencies:
       domhandler: 4.3.1
       html-dom-parser: 1.2.0
-      react: 17.0.2
+      react: 19.1.0
       react-property: 2.0.0
       style-to-js: 1.1.1
 
@@ -2234,124 +2234,129 @@ snapshots:
     dependencies:
       performance-now: 2.1.0
 
-  react-blurhash@0.3.0(blurhash@2.0.5)(react@17.0.2):
+  react-blurhash@0.3.0(blurhash@2.0.5)(react@19.1.0):
     dependencies:
       blurhash: 2.0.5
-      react: 17.0.2
+      react: 19.1.0
 
-  react-clientside-effect@1.2.8(react@17.0.2):
+  react-clientside-effect@1.2.8(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.6
-      react: 17.0.2
+      react: 19.1.0
 
-  react-dom@17.0.2(react@17.0.2):
+  react-dom@19.1.0(react@19.1.0):
     dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react: 17.0.2
-      scheduler: 0.20.2
+      react: 19.1.0
+      scheduler: 0.26.0
 
-  react-focus-lock@2.13.6(react@17.0.2):
+  react-focus-lock@2.13.6(@types/react@19.1.8)(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.6
       focus-lock: 1.3.6
       prop-types: 15.8.1
-      react: 17.0.2
-      react-clientside-effect: 1.2.8(react@17.0.2)
-      use-callback-ref: 1.3.3(react@17.0.2)
-      use-sidecar: 1.1.3(react@17.0.2)
+      react: 19.1.0
+      react-clientside-effect: 1.2.8(react@19.1.0)
+      use-callback-ref: 1.3.3(@types/react@19.1.8)(react@19.1.0)
+      use-sidecar: 1.1.3(@types/react@19.1.8)(react@19.1.0)
+    optionalDependencies:
+      '@types/react': 19.1.8
 
-  react-focus-on@3.10.0(react@17.0.2):
+  react-focus-on@3.10.0(@types/react@19.1.8)(react@19.1.0):
     dependencies:
       aria-hidden: 1.2.6
-      react: 17.0.2
-      react-focus-lock: 2.13.6(react@17.0.2)
-      react-remove-scroll: 2.7.1(react@17.0.2)
-      react-style-singleton: 2.2.3(react@17.0.2)
+      react: 19.1.0
+      react-focus-lock: 2.13.6(@types/react@19.1.8)(react@19.1.0)
+      react-remove-scroll: 2.7.1(@types/react@19.1.8)(react@19.1.0)
+      react-style-singleton: 2.2.3(@types/react@19.1.8)(react@19.1.0)
       tslib: 2.8.1
-      use-sidecar: 1.1.3(react@17.0.2)
+      use-sidecar: 1.1.3(@types/react@19.1.8)(react@19.1.0)
+    optionalDependencies:
+      '@types/react': 19.1.8
 
-  react-full-screen@1.1.1(react@17.0.2):
+  react-full-screen@1.1.1(react@19.1.0):
     dependencies:
       fscreen: 1.2.0
-      react: 17.0.2
+      react: 19.1.0
 
-  react-images@1.2.0-beta.7(prop-types@15.8.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2):
+  react-images@1.2.0-beta.7(@types/react@19.1.8)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       a11y-focus-store: 1.0.0
       cross-env: 7.0.3
       glam: 5.0.1
-      html-react-parser: 1.4.14(react@17.0.2)
+      html-react-parser: 1.4.14(react@19.1.0)
       prop-types: 15.8.1
       raf-schd: 4.0.3
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      react-focus-on: 3.10.0(react@17.0.2)
-      react-full-screen: 1.1.1(react@17.0.2)
-      react-transition-group: 4.4.5(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
-      react-view-pager: 0.6.0(prop-types@15.8.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      react-focus-on: 3.10.0(@types/react@19.1.8)(react@19.1.0)
+      react-full-screen: 1.1.1(react@19.1.0)
+      react-transition-group: 4.4.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react-view-pager: 0.6.0(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     transitivePeerDependencies:
       - '@types/react'
 
   react-is@16.13.1: {}
 
-  react-motion@0.5.2(react@17.0.2):
+  react-motion@0.5.2(react@19.1.0):
     dependencies:
       performance-now: 0.2.0
       prop-types: 15.8.1
       raf: 3.4.1
-      react: 17.0.2
+      react: 19.1.0
 
   react-property@2.0.0: {}
 
   react-refresh@0.17.0: {}
 
-  react-remove-scroll-bar@2.3.8(react@17.0.2):
+  react-remove-scroll-bar@2.3.8(@types/react@19.1.8)(react@19.1.0):
     dependencies:
-      react: 17.0.2
-      react-style-singleton: 2.2.3(react@17.0.2)
+      react: 19.1.0
+      react-style-singleton: 2.2.3(@types/react@19.1.8)(react@19.1.0)
       tslib: 2.8.1
+    optionalDependencies:
+      '@types/react': 19.1.8
 
-  react-remove-scroll@2.7.1(react@17.0.2):
+  react-remove-scroll@2.7.1(@types/react@19.1.8)(react@19.1.0):
     dependencies:
-      react: 17.0.2
-      react-remove-scroll-bar: 2.3.8(react@17.0.2)
-      react-style-singleton: 2.2.3(react@17.0.2)
+      react: 19.1.0
+      react-remove-scroll-bar: 2.3.8(@types/react@19.1.8)(react@19.1.0)
+      react-style-singleton: 2.2.3(@types/react@19.1.8)(react@19.1.0)
       tslib: 2.8.1
-      use-callback-ref: 1.3.3(react@17.0.2)
-      use-sidecar: 1.1.3(react@17.0.2)
+      use-callback-ref: 1.3.3(@types/react@19.1.8)(react@19.1.0)
+      use-sidecar: 1.1.3(@types/react@19.1.8)(react@19.1.0)
+    optionalDependencies:
+      '@types/react': 19.1.8
 
-  react-style-singleton@2.2.3(react@17.0.2):
+  react-style-singleton@2.2.3(@types/react@19.1.8)(react@19.1.0):
     dependencies:
       get-nonce: 1.0.1
-      react: 17.0.2
+      react: 19.1.0
       tslib: 2.8.1
+    optionalDependencies:
+      '@types/react': 19.1.8
 
-  react-transition-group@4.4.5(react-dom@17.0.2(react@17.0.2))(react@17.0.2):
+  react-transition-group@4.4.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.6
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
-  react-view-pager@0.6.0(prop-types@15.8.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2):
+  react-view-pager@0.6.0(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       animation-bus: 0.2.0
       get-prefix: 1.0.0
       mitt: 1.1.3
       prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      react-motion: 0.5.2(react@17.0.2)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      react-motion: 0.5.2(react@19.1.0)
       resize-observer-polyfill: 1.5.0
       tabbable: 1.1.2
 
-  react@17.0.2:
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
+  react@19.1.0: {}
 
   resize-observer-polyfill@1.5.0: {}
 
@@ -2395,10 +2400,7 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  scheduler@0.20.2:
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
+  scheduler@0.26.0: {}
 
   semver@6.3.1: {}
 
@@ -2499,16 +2501,20 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
-  use-callback-ref@1.3.3(react@17.0.2):
+  use-callback-ref@1.3.3(@types/react@19.1.8)(react@19.1.0):
     dependencies:
-      react: 17.0.2
+      react: 19.1.0
       tslib: 2.8.1
+    optionalDependencies:
+      '@types/react': 19.1.8
 
-  use-sidecar@1.1.3(react@17.0.2):
+  use-sidecar@1.1.3(@types/react@19.1.8)(react@19.1.0):
     dependencies:
       detect-node-es: 1.1.0
-      react: 17.0.2
+      react: 19.1.0
       tslib: 2.8.1
+    optionalDependencies:
+      '@types/react': 19.1.8
 
   v8-compile-cache-lib@3.0.1: {}
 

@@ -1,5 +1,18 @@
-import PropTypes from 'prop-types'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, ReactNode, CSSProperties } from 'react'
+
+interface SpringOptions {
+  stiffness: number;
+  damping: number;
+}
+
+interface TiltProps {
+  children: ReactNode;
+  className?: string;
+  style?: CSSProperties;
+  rotationFactor?: number;
+  isRevese?: boolean;
+  springOptions?: SpringOptions;
+}
 
 export function Tilt({
   children,
@@ -8,14 +21,14 @@ export function Tilt({
   rotationFactor = 15,
   isRevese = false,
   springOptions = { stiffness: 0.15, damping: 0.8 },
-}) {
-  const elementRef = useRef(null)
-  const requestRef = useRef(null)
-  const previousTimeRef = useRef(null)
+}: TiltProps) {
+  const elementRef = useRef<HTMLDivElement>(null)
+  const requestRef = useRef<number | null>(null)
+  const previousTimeRef = useRef<number | undefined>(undefined)
 
-  const rotationRef = useRef({ x: 0, y: 0 })
-  const targetRotationRef = useRef({ x: 0, y: 0 })
-  const velocityRef = useRef({ x: 0, y: 0 })
+  const rotationRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
+  const targetRotationRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
+  const velocityRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
 
   useEffect(() => {
     const element = elementRef.current
@@ -25,7 +38,7 @@ export function Tilt({
       targetRotationRef.current = { x: 0, y: 0 }
     }
 
-    const calculateTargetRotation = e => {
+    const calculateTargetRotation = (e: MouseEvent) => {
       if (!elementRef.current) return
 
       const rect = elementRef.current.getBoundingClientRect()
@@ -44,7 +57,7 @@ export function Tilt({
       }
     }
 
-    const animateSpring = time => {
+    const animateSpring = (time: number) => {
       if (previousTimeRef.current === undefined) {
         previousTimeRef.current = time
       }
@@ -52,7 +65,7 @@ export function Tilt({
       const deltaTime = Math.min((time - previousTimeRef.current) / 1000, 0.1)
       previousTimeRef.current = time
 
-      const axes = ['x', 'y']
+      const axes: ('x' | 'y')[] = ['x', 'y']
       let stillMoving = false
 
       axes.forEach(axis => {
@@ -81,7 +94,7 @@ export function Tilt({
       }
     }
 
-    const handleMouseMove = e => {
+    const handleMouseMove = (e: MouseEvent) => {
       calculateTargetRotation(e)
 
       if (!requestRef.current) {
@@ -126,15 +139,6 @@ export function Tilt({
       {children}
     </div>
   )
-}
-
-Tilt.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-  style: PropTypes.object,
-  rotationFactor: PropTypes.number,
-  isRevese: PropTypes.bool,
-  springOptions: PropTypes.object,
 }
 
 export default Tilt

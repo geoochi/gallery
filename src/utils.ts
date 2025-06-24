@@ -1,8 +1,7 @@
-const throttle = (fn, wait) => {
-  let inThrottle, lastFn, lastTime
-  return function () {
+const throttle = (fn: (...args: any[]) => void, wait: number): (...args: any[]) => void => {
+  let inThrottle: boolean = false, lastFn: ReturnType<typeof setTimeout>, lastTime: number = 0
+  return function (this: any, ...args: any[]) {
     const context = this
-    const args = arguments
     if (!inThrottle) {
       inThrottle = true
       fn.apply(context, args)
@@ -20,7 +19,7 @@ const throttle = (fn, wait) => {
   }
 }
 
-function isElementInViewport(el, index) {
+function isElementInViewport(el: HTMLElement, index: number): boolean {
   const rect = el.getBoundingClientRect()
   const windowHeight = window.innerHeight || document.documentElement.clientHeight
   const windowWidth = window.innerWidth || document.documentElement.clientWidth
@@ -61,21 +60,21 @@ function isElementInViewport(el, index) {
   return visibleRatio >= 0.1
 }
 
-function lazyLoad(images) {
-  if (!images || !images.length || images.every(image => !image)) {
+function lazyLoad(images: (HTMLImageElement | null | undefined)[]): void {
+  if (!images || !images.length || images.every((image: HTMLImageElement | null | undefined) => !image)) {
     // console.log('No valid images to lazy load')
     return
   }
 
   // console.log(`Setting up lazy loading for ${images.length} images`)
 
-  const validImages = images.filter((img, i) => {
+  const validImages = images.filter((img: HTMLImageElement | null | undefined, i: number) => {
     if (!img || !img.getBoundingClientRect) {
       // console.log(`Invalid image at index ${i}:`, img)
       return false
     }
     return true
-  })
+  }) as HTMLImageElement[]
 
   if (validImages.length === 0) {
     // console.log('No valid images found for lazy loading')
@@ -84,9 +83,9 @@ function lazyLoad(images) {
 
   // console.log(`Found ${validImages.length} valid images for lazy loading`)
 
-  const hadLoadSymbol = Array.from({ length: validImages.length }).fill(false)
+  const hadLoadSymbol = Array.from({ length: validImages.length }).fill(false) as boolean[]
 
-  function loadImage(el, index) {
+  function loadImage(el: HTMLImageElement, index: number): void {
     if (!el || !el.dataset || !el.dataset.original) {
       // console.log(`Cannot load image ${index}: Invalid element or missing data-original attribute`)
       hadLoadSymbol[index] = true
@@ -96,7 +95,7 @@ function lazyLoad(images) {
     const src = el.dataset.original
     // console.log(`Loading image ${index} from src: ${src}`)
 
-    const img = new Image()
+    const img = new window.Image()
     img.src = src
     img.onload = function () {
       // console.log(`Image ${index} loaded successfully`)
@@ -106,7 +105,7 @@ function lazyLoad(images) {
 
       const photoDiv = el.closest('.photo')
       if (photoDiv) {
-        const blurhash = photoDiv.querySelector('.blurhash-placeholder')
+        const blurhash = photoDiv.querySelector('.blurhash-placeholder') as HTMLElement | null
         if (blurhash) {
           blurhash.classList.add('fade-out')
         }
@@ -121,8 +120,8 @@ function lazyLoad(images) {
   const lazyLoadEvent = throttle(processImages, 120)
   window.addEventListener('scroll', lazyLoadEvent, false)
 
-  function processImages() {
-    if (hadLoadSymbol.every(el => !!el)) {
+  function processImages(): void {
+    if (hadLoadSymbol.every((el: boolean) => !!el)) {
       // console.log('All images loaded, removing scroll listener')
       window.removeEventListener('scroll', lazyLoadEvent)
       return
