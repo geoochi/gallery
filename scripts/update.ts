@@ -1,15 +1,34 @@
-const fs = require('fs')
-const sizeOf = require('image-size')
-const sharp = require('sharp')
-const { encode } = require('blurhash')
-const { Worker, isMainThread, parentPort, workerData } = require('worker_threads')
-const os = require('os')
-const path = require('path')
-const del = require('del')
+import fs from 'fs'
+import sizeOf from 'image-size'
+import sharp from 'sharp'
+import { encode } from 'blurhash'
+import { Worker, isMainThread, parentPort, workerData } from 'worker_threads'
+import os from 'os'
+import path from 'path'
+import del from 'del'
 
 const CACHE_FILE = './blurhash_cache.json'
 
-let hashCache = {}
+interface HashCacheEntry {
+  name: string
+  width: number
+  height: number
+  widthScale: number
+  heightScale: number
+  hash: string
+}
+
+interface PhotoData {
+  src: string
+  title: string
+  alt: string
+  width: number
+  height: number
+  size: { height: number; width: number }
+  hash: string
+}
+
+let hashCache: Record<string, HashCacheEntry> = {}
 try {
   if (fs.existsSync(CACHE_FILE)) {
     hashCache = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8'))
@@ -24,16 +43,16 @@ const saveCache = () => {
   console.log(`Cache saved with ${Object.keys(hashCache).length} entries`)
 }
 
-const encodeImageToBlurhash = path =>
+const encodeImageToBlurhash = (imgPath: string): Promise<string> =>
   new Promise((resolve, reject) => {
-    sharp(path)
+    sharp(imgPath)
       .metadata()
       .then(metadata => {
         const { width, height } = metadata
-        return sharp(path)
+        return sharp(imgPath)
           .resize({
-            width: Math.round(width / 4),
-            height: Math.round(height / 4),
+            width: width ? Math.round(width / 4) : undefined,
+            height: height ? Math.round(height / 4) : undefined,
             fit: 'inside',
           })
           .raw()
@@ -47,13 +66,13 @@ const encodeImageToBlurhash = path =>
   })
 
 if (!isMainThread) {
-  ;(async () => {
-    const { photoPath, cacheKey } = workerData
+  (async () => {
+    const { photoPath, cacheKey } = workerData as { photoPath: string; cacheKey: string }
     try {
       const hash = await encodeImageToBlurhash(photoPath)
-      parentPort.postMessage({ hash, cacheKey, success: true })
-    } catch (error) {
-      parentPort.postMessage({
+      parentPort?.postMessage({ hash, cacheKey, success: true })
+    } catch (error: any) {
+      parentPort?.postMessage({
         error: error.message,
         cacheKey,
         success: false,
@@ -64,8 +83,9 @@ if (!isMainThread) {
 
 const { NODE_ENV: ENV } = process.env
 
-const packageJson = require('../package.json')
-const CDN = packageJson.config.cdn
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+import packageJson from '../package.json'
+const CDN: string = packageJson.config.cdn
 const photosDir = './public/photos/'
 const photosLocalDir = './photos/'
 const photoJSON = './src/photos.json'
@@ -74,7 +94,7 @@ const ignoreFileList = ['.DS_Store', 'hidden']
 
 const RANGE = 120
 
-const processPhotoWithWorker = photo => {
+const processPhotoWithWorker = (photo: string): Promise<PhotoData> => {
   return new Promise((resolve, reject) => {
     const photoPath = photosDir + photo
     const cacheKey = photo
@@ -82,7 +102,7 @@ const processPhotoWithWorker = photo => {
     if (hashCache[cacheKey]) {
       const { name, width, height, widthScale, heightScale, hash } = hashCache[cacheKey]
       const src = ENV === 'DEV' ? photosLocalDir + photo : CDN + photo
-      const photoData = {
+      const photoData: PhotoData = {
         src,
         title: name,
         alt: name,
@@ -97,14 +117,14 @@ const processPhotoWithWorker = photo => {
 
     const worker = new Worker(__filename, {
       workerData: { photoPath, cacheKey },
-    })
+    } as any) // TypeScript workaround for workerData
 
-    worker.on('message', async data => {
+    worker.on('message', async (data: any) => {
       if (data.success) {
         try {
           const { hash } = data
+          const { height, width } = sizeOf(photoPath) as { width: number; height: number }
           const name = photo.split('.').slice(0, -1).join('.')
-          const { height, width } = sizeOf(photoPath)
           const sub = Math.abs(height - width)
           const heightScale = sub < RANGE ? 1 : Math.round(height / RANGE)
           const widthScale = sub < RANGE ? 1 : Math.round(width / RANGE)
@@ -119,7 +139,7 @@ const processPhotoWithWorker = photo => {
             hash,
           }
 
-          const photoData = {
+          const photoData: PhotoData = {
             src,
             title: name,
             alt: name,
@@ -141,14 +161,14 @@ const processPhotoWithWorker = photo => {
   })
 }
 
-const formatProgressBar = (current, total, length = 30) => {
+const formatProgressBar = (current: number, total: number, length = 30): string => {
   const percentage = Math.floor((current / total) * 100)
   const filledLength = Math.floor((current / total) * length)
   const bar = '█'.repeat(filledLength) + '░'.repeat(length - filledLength)
   return `[${bar}] ${current}/${total} (${percentage}%)`
 }
 
-const minify = async (needCompressPhotos, destination) => {
+const minify = async (needCompressPhotos: string[], destination: string) => {
   try {
     await Promise.all(
       needCompressPhotos.map(async photo => {
@@ -166,7 +186,7 @@ const minify = async (needCompressPhotos, destination) => {
   } catch (error) {
     console.log('Occur error when minifying images:')
     console.error(error)
-    throw err
+    throw error
   }
 }
 
@@ -221,7 +241,7 @@ const main = async () => {
   console.log(`Processing with ${concurrency} worker threads`)
 
   try {
-    const results = []
+    const results: PhotoData[] = []
     let processedCount = 0
 
     for (let i = 0; i < photos.length; i += concurrency) {
@@ -238,7 +258,7 @@ const main = async () => {
           const fromCache = hashCache[batch[idx]] ? ' (from cache)' : ''
           console.log(`[${processedCount}/${totalPhotos}] Processed: ${batch[idx]}${fromCache}`)
         } else {
-          console.error(`[${processedCount}/${totalPhotos}] Error processing ${batch[idx]}:`, result.reason)
+          console.error(`[${processedCount}/${totalPhotos}] Error processing ${batch[idx]}:`, (result as PromiseRejectedResult).reason)
         }
       })
 

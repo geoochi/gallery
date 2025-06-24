@@ -4,8 +4,8 @@
     "cdn": "./photos/"
   },
   "scripts": {
-    "d": "NODE_ENV=DEV node scripts/update.js && vite",
-    "b": "node scripts/update.js && vite build",
+    "d": "NODE_ENV=DEV ts-node scripts/update.ts && vite",
+    "b": "ts-node scripts/update.ts && vite build",
     "p": "pnpx http-server dist -p 5173 -a localhost"
   },
   "dependencies": {
@@ -17,11 +17,16 @@
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.5.0",
+    "@types/image-size": "^0.8.0",
+    "@types/node": "^24.0.3",
+    "@types/sharp": "^0.32.0",
+    "@vitejs/plugin-react": "^4.6.0",
     "blurhash": "^2.0.5",
     "del": "^6.1.1",
     "image-size": "^0.9.7",
     "sharp": "^0.34.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
     "vite": "^6.3.5"
   }
 }
