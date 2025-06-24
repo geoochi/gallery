@@ -1,7 +1,7 @@
 {
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.12.0",
   "config": {
-    "cdn": "https://cdn.jsdelivr.net/gh/geoochi/gallery/photos/"
+    "cdn": "./photos/"
   },
   "scripts": {
     "dev": "vite",
