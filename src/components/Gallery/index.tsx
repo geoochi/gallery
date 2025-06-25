@@ -1,4 +1,11 @@
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { Blurhash } from 'react-blurhash'
 import ResizeObserver from 'resize-observer-polyfill'
 import Tilt from '../Tilt'
@@ -6,25 +13,33 @@ import { computeColumnLayout, computeDynamicColumns } from './layouts/columns'
 
 // 定义 Photo 类型
 export interface Photo {
-  src: string;
-  title: string;
-  size: { height: number; width: number };
-  hash?: string;
-  alt?: string;
+  src: string
+  title: string
+  size: { height: number; width: number }
+  hash?: string
+  alt?: string
   // 下面这些是布局后才有的
-  width?: number;
-  height?: number;
-  top?: number;
-  left?: number;
-  containerHeight?: number;
-  [key: string]: any;
+  width?: number
+  height?: number
+  top?: number
+  left?: number
+  containerHeight?: number
+  [key: string]: any
 }
 
 interface GalleryProps {
-  photos: Photo[];
-  margin?: number;
-  onClick: (event: React.MouseEvent, data: { index: number; photo: Photo; previous: Photo | null; next: Photo | null }) => void;
-  onLoad: (elements: (HTMLImageElement | null)[]) => void;
+  photos: Photo[]
+  margin?: number
+  onClick: (
+    event: React.MouseEvent,
+    data: {
+      index: number
+      photo: Photo
+      previous: Photo | null
+      next: Photo | null
+    }
+  ) => void
+  onLoad: (elements: (HTMLImageElement | null)[]) => void
 }
 
 function Gallery({ photos, onClick, margin = 8, onLoad }: GalleryProps) {
@@ -33,7 +48,7 @@ function Gallery({ photos, onClick, margin = 8, onLoad }: GalleryProps) {
 
   useLayoutEffect(() => {
     let animationFrameID: number | null = null
-    const observer = new ResizeObserver(entries => {
+    const observer = new ResizeObserver((entries) => {
       const newWidth = entries[0].contentRect.width
       if (containerWidth !== newWidth) {
         animationFrameID = window.requestAnimationFrame(() => {
@@ -58,9 +73,13 @@ function Gallery({ photos, onClick, margin = 8, onLoad }: GalleryProps) {
     }) as (Photo & { top: number; left: number; containerHeight: number })[]
     const galleryStyle: React.CSSProperties = { position: 'relative' }
     if (computedPhotos.length > 0) {
-      galleryStyle.height = computedPhotos[computedPhotos.length - 1].containerHeight
+      galleryStyle.height =
+        computedPhotos[computedPhotos.length - 1].containerHeight
     }
-    return [computedPhotos, galleryStyle] as [typeof computedPhotos, React.CSSProperties]
+    return [computedPhotos, galleryStyle] as [
+      typeof computedPhotos,
+      React.CSSProperties
+    ]
   }, [containerWidth, margin, photos])
 
   const handleClick = useCallback(
@@ -75,7 +94,13 @@ function Gallery({ photos, onClick, margin = 8, onLoad }: GalleryProps) {
     [onClick, photos]
   )
 
-  const refs = useMemo(() => Array.from({ length: photos.length }, () => React.createRef<HTMLImageElement>()), [photos.length])
+  const refs = useMemo(
+    () =>
+      Array.from({ length: photos.length }, () =>
+        React.createRef<HTMLImageElement>()
+      ),
+    [photos.length]
+  )
 
   useEffect(() => {
     onLoad(refs.map(({ current }) => current))
@@ -98,7 +123,12 @@ function Gallery({ photos, onClick, margin = 8, onLoad }: GalleryProps) {
         }
 
         return (
-          <Tilt key={src} style={style} rotationFactor={5} springOptions={{ stiffness: 300, damping: 20 }}>
+          <Tilt
+            key={src}
+            style={style}
+            rotationFactor={5}
+            springOptions={{ stiffness: 300, damping: 20 }}
+          >
             <div className='photo' onClick={onClick}>
               {hash && (
                 <Blurhash

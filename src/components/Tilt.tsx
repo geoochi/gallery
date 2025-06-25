@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, ReactNode, CSSProperties } from 'react'
 
 interface SpringOptions {
-  stiffness: number;
-  damping: number;
+  stiffness: number
+  damping: number
 }
 
 interface TiltProps {
-  children: ReactNode;
-  className?: string;
-  style?: CSSProperties;
-  rotationFactor?: number;
-  isRevese?: boolean;
-  springOptions?: SpringOptions;
+  children: ReactNode
+  className?: string
+  style?: CSSProperties
+  rotationFactor?: number
+  isRevese?: boolean
+  springOptions?: SpringOptions
 }
 
 export function Tilt({
@@ -52,8 +52,12 @@ export function Tilt({
       const normalizedY = mouseY / height - 0.5
 
       targetRotationRef.current = {
-        x: isRevese ? -normalizedY * rotationFactor : normalizedY * rotationFactor,
-        y: isRevese ? normalizedX * rotationFactor : -normalizedX * rotationFactor,
+        x: isRevese
+          ? -normalizedY * rotationFactor
+          : normalizedY * rotationFactor,
+        y: isRevese
+          ? normalizedX * rotationFactor
+          : -normalizedX * rotationFactor,
       }
     }
 
@@ -68,8 +72,9 @@ export function Tilt({
       const axes: ('x' | 'y')[] = ['x', 'y']
       let stillMoving = false
 
-      axes.forEach(axis => {
-        const displacement = rotationRef.current[axis] - targetRotationRef.current[axis]
+      axes.forEach((axis) => {
+        const displacement =
+          rotationRef.current[axis] - targetRotationRef.current[axis]
         const springForce = -springOptions.stiffness * displacement
         const dampingForce = -springOptions.damping * velocityRef.current[axis]
         const force = springForce + dampingForce
@@ -78,7 +83,10 @@ export function Tilt({
 
         rotationRef.current[axis] += velocityRef.current[axis] * deltaTime
 
-        if (Math.abs(displacement) > 0.01 || Math.abs(velocityRef.current[axis]) > 0.01) {
+        if (
+          Math.abs(displacement) > 0.01 ||
+          Math.abs(velocityRef.current[axis]) > 0.01
+        ) {
           stillMoving = true
         }
       })

@@ -8,11 +8,11 @@ import { lazyLoad } from './utils'
 
 // 定义 Photo 类型
 interface Photo {
-  src: string;
-  title: string;
-  size: { height: number; width: number };
-  hash?: string;
-  alt?: string;
+  src: string
+  title: string
+  size: { height: number; width: number }
+  hash?: string
+  alt?: string
 }
 
 function App() {
@@ -20,10 +20,13 @@ function App() {
   const [viewerIsOpen, setViewerIsOpen] = useState<boolean>(false)
 
   // onClick 事件类型适配
-  const openLightbox = useCallback((_: React.MouseEvent, data: { index: number }) => {
-    setCurrentPhoto(data.index)
-    setViewerIsOpen(true)
-  }, [])
+  const openLightbox = useCallback(
+    (_: React.MouseEvent, data: { index: number }) => {
+      setCurrentPhoto(data.index)
+      setViewerIsOpen(true)
+    },
+    []
+  )
 
   const closeLightbox = useCallback(() => {
     setCurrentPhoto(0)
@@ -32,8 +35,17 @@ function App() {
 
   return (
     <>
-      <Gallery photos={photos as Photo[]} onLoad={lazyLoad} onClick={openLightbox} />
-      <Lightbox photos={photos as Photo[]} viewerIsOpen={viewerIsOpen} currentPhoto={currentPhoto} closeLightbox={closeLightbox} />
+      <Gallery
+        photos={photos as Photo[]}
+        onLoad={lazyLoad}
+        onClick={openLightbox}
+      />
+      <Lightbox
+        photos={photos as Photo[]}
+        viewerIsOpen={viewerIsOpen}
+        currentPhoto={currentPhoto}
+        closeLightbox={closeLightbox}
+      />
     </>
   )
 }

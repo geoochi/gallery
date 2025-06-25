@@ -9,6 +9,9 @@
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "moduleResolution": "node",
-    "types": ["react", "react-dom"]
+    "types": [
+      "react",
+      "react-dom"
+    ]
   }
 }
