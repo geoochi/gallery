@@ -1,3 +1,2 @@
 # geoochi-gallery
 
-![](output.gif)
