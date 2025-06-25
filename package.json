@@ -4,7 +4,7 @@
     "cdn": "./photos/"
   },
   "scripts": {
-    "d": "NODE_ENV=DEV ts-node scripts/update.ts && vite",
+    "d": "cross-env NODE_ENV=DEV ts-node scripts/update.ts && vite",
     "b": "ts-node scripts/update.ts && vite build",
     "p": "pnpx http-server dist -p 5173 -a localhost"
   },
@@ -22,6 +22,7 @@
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.6.0",
     "blurhash": "^2.0.5",
+    "cross-env": "^7.0.3",
     "del": "^6.1.1",
     "image-size": "^0.9.7",
     "sharp": "^0.34.2",
