@@ -16,21 +16,14 @@ interface LightboxProps {
   closeLightbox: () => void
 }
 
-function Lightbox({
-  viewerIsOpen,
-  photos,
-  currentPhoto,
-  closeLightbox,
-}: LightboxProps) {
+function Lightbox({ viewerIsOpen, photos, currentPhoto, closeLightbox }: LightboxProps) {
   // 适配 react-images 的 ViewType
-  const views: ViewType[] = photos.map(
-    ({ src, title, size: { height, width } }) => ({
-      source: src,
-      caption: title,
-      width,
-      height,
-    })
-  )
+  const views: ViewType[] = photos.map(({ src, title, size: { height, width } }) => ({
+    source: src,
+    caption: title,
+    width,
+    height,
+  }))
 
   if (!viewerIsOpen) return null
   // ModalGateway 不能有 children，直接调用 ModalGateway 和 Modal
@@ -39,11 +32,7 @@ function Lightbox({
       React.createElement(
         ModalGateway,
         null,
-        React.createElement(
-          Modal,
-          { onClose: closeLightbox },
-          React.createElement(Carousel, { currentIndex: currentPhoto, views })
-        )
+        React.createElement(Modal, { onClose: closeLightbox }, React.createElement(Carousel, { currentIndex: currentPhoto, views }))
       )
     : null
 }

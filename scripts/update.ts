@@ -66,7 +66,7 @@ const encodeImageToBlurhash = (imgPath: string): Promise<string> =>
   })
 
 if (!isMainThread) {
-  (async () => {
+  ;(async () => {
     const { photoPath, cacheKey } = workerData as { photoPath: string; cacheKey: string }
     try {
       const hash = await encodeImageToBlurhash(photoPath)

@@ -1,5 +1,7 @@
-const throttle = (fn: (...args: any[]) => void, wait: number): (...args: any[]) => void => {
-  let inThrottle: boolean = false, lastFn: ReturnType<typeof setTimeout>, lastTime: number = 0
+const throttle = (fn: (...args: any[]) => void, wait: number): ((...args: any[]) => void) => {
+  let inThrottle: boolean = false,
+    lastFn: ReturnType<typeof setTimeout>,
+    lastTime: number = 0
   return function (this: any, ...args: any[]) {
     const context = this
     if (!inThrottle) {

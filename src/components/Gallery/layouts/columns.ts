@@ -4,20 +4,25 @@ const round = (value: number, decimals: number = 0): number => {
 
 // 定义 Photo 类型
 export interface Photo {
-  width?: number;
-  height?: number;
-  [key: string]: any;
+  width?: number
+  height?: number
+  [key: string]: any
 }
 
 interface ComputeColumnLayoutParams {
-  photos: Photo[];
-  columns: number;
-  containerWidth: number;
-  margin: number;
+  photos: Photo[]
+  columns: number
+  containerWidth: number
+  margin: number
 }
 
 // compute sizes for column directed layouts
-export const computeColumnLayout = ({ photos, columns, containerWidth, margin }: ComputeColumnLayoutParams): (Photo & { top: number; left: number; containerHeight: number })[] => {
+export const computeColumnLayout = ({
+  photos,
+  columns,
+  containerWidth,
+  margin,
+}: ComputeColumnLayoutParams): (Photo & { top: number; left: number; containerHeight: number })[] => {
   // calculate each colWidth based on total width and column amount
   let colWidth = (containerWidth - margin * 2 * columns) / columns
 
@@ -44,23 +49,17 @@ export const computeColumnLayout = ({ photos, columns, containerWidth, margin }:
   // find column with the smallest height and assign to photo's 'top'
   // update that column's height with this photo's height
   const photosPositioned = photosWithSizes.map((photo: Photo & { width: number; height: number }) => {
-    const smallestCol = colCurrTopPositions.reduce(
-      (acc: number, item: number, i: number) => (item < colCurrTopPositions[acc] ? i : acc),
-      0 as number
-    );
+    const smallestCol = colCurrTopPositions.reduce((acc: number, item: number, i: number) => (item < colCurrTopPositions[acc] ? i : acc), 0 as number)
 
-    (photo as any).top = colCurrTopPositions[smallestCol];
-    (photo as any).left = colLeftPositions[smallestCol];
-    colCurrTopPositions[smallestCol] = colCurrTopPositions[smallestCol] + photo.height + margin * 2;
+    ;(photo as any).top = colCurrTopPositions[smallestCol]
+    ;(photo as any).left = colLeftPositions[smallestCol]
+    colCurrTopPositions[smallestCol] = colCurrTopPositions[smallestCol] + photo.height + margin * 2
 
     // store the tallest col to use for gallery height because of abs positioned elements
-    const tallestCol = colCurrTopPositions.reduce(
-      (acc: number, item: number, i: number) => (item > colCurrTopPositions[acc] ? i : acc),
-      0 as number
-    );
-    (photo as any).containerHeight = colCurrTopPositions[tallestCol];
-    return photo as Photo & { top: number; left: number; containerHeight: number };
-  });
+    const tallestCol = colCurrTopPositions.reduce((acc: number, item: number, i: number) => (item > colCurrTopPositions[acc] ? i : acc), 0 as number)
+    ;(photo as any).containerHeight = colCurrTopPositions[tallestCol]
+    return photo as Photo & { top: number; left: number; containerHeight: number }
+  })
   return photosPositioned
 }
 
