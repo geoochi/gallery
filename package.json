@@ -5,7 +5,7 @@
   "scripts": {
     "d": "cross-env NODE_ENV=DEV ts-node scripts/update.ts && vite",
     "b": "ts-node scripts/update.ts && vite build",
-    "p": "pnpx http-server dist -p 5173 -a localhost"
+    "p": "bunx http-server dist -p 5173 -a localhost"
   },
   "dependencies": {
     "prop-types": "^15.8.1",
