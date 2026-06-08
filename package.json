@@ -1,5 +1,5 @@
 {
-  "packageManager": "pnpm@11.0.8",
+  "packageManager": "pnpm@11.5.2",
   "scripts": {
     "d": "pnpm refresh && vite",
     "b": "pnpm refresh && vite build",
@@ -8,18 +8,18 @@
   },
   "dependencies": {
     "image-size": "^2.0.2",
-    "preact": "^10.29.1",
+    "preact": "^10.29.2",
     "preact-iso": "^2.12.0",
-    "preact-render-to-string": "^6.6.7",
-    "react-dom": "^19.2.6",
+    "preact-render-to-string": "^6.7.0",
+    "react-dom": "^19.2.7",
     "react-responsive-carousel": "^3.2.23",
     "resize-observer-polyfill": "^1.5.1",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.5",
-    "@types/node": "^25.6.2",
+    "@types/node": "^25.9.2",
     "typescript": "^6.0.3",
-    "vite": "^8.0.11"
+    "vite": "^8.0.16"
   }
 }

@@ -90,7 +90,7 @@ const processPhoto = async (photo, cache) => {
     const sub = Math.abs(height - width)
     const heightScale = sub < RANGE ? 1 : Math.round(height / RANGE)
     const widthScale = sub < RANGE ? 1 : Math.round(width / RANGE)
-    const src = 'https://cdn.jsdelivr.net/gh/geoochi/gallery@main/photos/' + photo
+    const src = 'https://raw.githubusercontent.com/geoochi/gallery/main/photos/' + photo
 
     const photoData = {
       src,
