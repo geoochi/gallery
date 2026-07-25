@@ -1,5 +1,5 @@
 {
-  "packageManager": "pnpm@11.9.0",
+  "packageManager": "pnpm@11.17.0",
   "scripts": {
     "d": "pnpm refresh && vite",
     "b": "pnpm refresh && vite build",
